@@ -5,18 +5,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GraficadorSeñales"
         mc:Ignorable="d"
-        Title="MainWindow" Height="510" Width="800">
+        Title="MainWindow" Height="506" Width="788">
     <Grid>
-        <TextBox x:Name="txtTiempoInicial" HorizontalAlignment="Left" Height="23" Margin="428,42,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="120"/>
-        <TextBlock HorizontalAlignment="Left" Margin="428,21,0,0" TextWrapping="Wrap" Text="Tiempo inicial:" VerticalAlignment="Top"/>
-        <TextBox x:Name="txtTiempoFinal" HorizontalAlignment="Left" Height="23" Margin="428,98,0,0" TextWrapping="Wrap" Text="1" VerticalAlignment="Top" Width="120"/>
-        <TextBlock HorizontalAlignment="Left" Margin="428,77,0,0" TextWrapping="Wrap" Text="Tiempo final:" VerticalAlignment="Top"/>
-        <TextBox x:Name="txtFrecuenciaMuestreo" HorizontalAlignment="Left" Height="23" Margin="428,155,0,0" TextWrapping="Wrap" Text="1000" VerticalAlignment="Top" Width="120"/>
-        <TextBlock HorizontalAlignment="Left" Margin="428,134,0,0" TextWrapping="Wrap" Text="Frecuencia de muestreo:" VerticalAlignment="Top"/>
-        <Button Content="Graficar" HorizontalAlignment="Left" Margin="586,157,0,0" VerticalAlignment="Top" Width="192" Name="graficar" Click="graficar_Click"/>
+        <TextBox x:Name="txtTiempoInicial" HorizontalAlignment="Left" Height="23" Margin="638,42,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="120"/>
+        <TextBlock HorizontalAlignment="Left" Margin="638,21,0,0" TextWrapping="Wrap" Text="Tiempo inicial:" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtTiempoFinal" HorizontalAlignment="Left" Height="23" Margin="638,98,0,0" TextWrapping="Wrap" Text="1" VerticalAlignment="Top" Width="120"/>
+        <TextBlock HorizontalAlignment="Left" Margin="638,77,0,0" TextWrapping="Wrap" Text="Tiempo final:" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtFrecuenciaMuestreo" HorizontalAlignment="Left" Height="23" Margin="638,155,0,0" TextWrapping="Wrap" Text="1000" VerticalAlignment="Top" Width="120"/>
+        <TextBlock HorizontalAlignment="Left" Margin="638,134,0,0" TextWrapping="Wrap" Text="Frecuencia de muestreo:" VerticalAlignment="Top"/>
+        <Button Content="Graficar" HorizontalAlignment="Left" Margin="638,210,0,0" VerticalAlignment="Top" Width="120" Name="graficar" Click="graficar_Click"/>
         <ScrollViewer x:Name="scrContenedor" HorizontalAlignment="Left" Height="229" Margin="71,241,0,0" VerticalAlignment="Top" Width="701" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Hidden">
             <Grid>
                 <Polyline Stroke="CornflowerBlue" StrokeThickness="2" Name="plnGrafica"></Polyline>
+                <Polyline Stroke="Red" StrokeThickness="2" Name="plnSegundaseñal"></Polyline>
                 <Polyline Stroke="Black" StrokeThickness="0.5" Name="plnEjeX"></Polyline>
                 <Polyline Stroke="Black" StrokeThickness="0.5" Name="plnEjeY"></Polyline>
             </Grid>
@@ -24,25 +25,44 @@
         <TextBlock x:Name="lblAmplitudMaximaY" HorizontalAlignment="Left" Margin="20,259,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top"/>
         <TextBlock x:Name="lblAmplitudMaximaNegativaY" HorizontalAlignment="Left" Margin="20,428,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top"/>
         <TextBlock x:Name="lblAmplitud0" HorizontalAlignment="Left" Margin="20,346,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top"/>
-        <StackPanel x:Name="panelConfiguracion" HorizontalAlignment="Left" Height="167" Margin="20,21,0,0" VerticalAlignment="Top" Width="227"/>
-        <ComboBox x:Name="cbTipoSeñal" SelectedIndex="0" HorizontalAlignment="Left" Margin="586,99,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="cbTipoSeñal_SelectionChanged">
+        <StackPanel x:Name="panelConfiguracion" HorizontalAlignment="Left" Height="162" Margin="20,76,0,0" VerticalAlignment="Top" Width="139"/>
+        <ComboBox x:Name="cbTipoSeñal" SelectedIndex="0" HorizontalAlignment="Left" Margin="21,41,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="cbTipoSeñal_SelectionChanged">
             <ComboBoxItem>Señal Senoidal</ComboBoxItem>
             <ComboBoxItem>Señal rampa</ComboBoxItem>
             <ComboBoxItem>Señal Exponencial</ComboBoxItem>
         </ComboBox>
-        <TextBlock HorizontalAlignment="Left" Margin="590,74,0,0" TextWrapping="Wrap" Text="Tipo de señal:" VerticalAlignment="Top"/>
-        <TextBox x:Name="txtEscalaAmplitud" HorizontalAlignment="Left" Height="23" Margin="260,42,0,0" TextWrapping="Wrap" Text="1" VerticalAlignment="Top" Width="120" IsEnabled="{Binding ElementName=chbEscala, Path=IsChecked}"/>
-        <TextBlock HorizontalAlignment="Left" Margin="260,21,0,0" TextWrapping="Wrap" Text="Escala amplitud:" VerticalAlignment="Top"/>
-        <TextBox x:Name="txtDesplazamientoY" HorizontalAlignment="Left" Height="23" Margin="259,98,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="120" IsEnabled="{Binding ElementName=chbDesplazamiento, Path=IsChecked}"/>
-        <TextBlock HorizontalAlignment="Left" Margin="259,77,0,0" TextWrapping="Wrap" Text="Desplazamiento en Y:" VerticalAlignment="Top"/>
-        <CheckBox x:Name="chbEscala" Content="" HorizontalAlignment="Left" Margin="394,46,0,0" VerticalAlignment="Top" />
-        <CheckBox x:Name="chbDesplazamiento" Content="" HorizontalAlignment="Left" Margin="394,102,0,0" VerticalAlignment="Top" />
-        <CheckBox x:Name="chbTruncar" Content="" HorizontalAlignment="Left" Margin="394,160,0,0" VerticalAlignment="Top" />
-        <TextBox x:Name="txtTruncar" HorizontalAlignment="Left" Height="23" Margin="259,155,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="120" IsEnabled="{Binding IsChecked, ElementName=chbTruncar}"/>
-        <TextBlock HorizontalAlignment="Left" Margin="259,133,0,0" TextWrapping="Wrap" Text="Truncar:" VerticalAlignment="Top"/>
-        <CheckBox x:Name="chbPotencia" Content="" HorizontalAlignment="Left" Margin="394,217,0,0" VerticalAlignment="Top" />
-        <TextBox x:Name="txtPotencia" HorizontalAlignment="Left" Height="23" Margin="259,212,0,0" TextWrapping="Wrap" Text="1" VerticalAlignment="Top" Width="120" IsEnabled="{Binding IsChecked, ElementName=chbPotencia}"/>
-        <TextBlock HorizontalAlignment="Left" Margin="259,190,0,0" TextWrapping="Wrap" Text="Potencia:" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="25,16,0,0" TextWrapping="Wrap" Text="Tipo de señal:" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtEscalaAmplitud" HorizontalAlignment="Left" Height="23" Margin="165,42,0,0" TextWrapping="Wrap" Text="1" VerticalAlignment="Top" Width="120" IsEnabled="{Binding ElementName=chbEscala, Path=IsChecked}"/>
+        <TextBlock HorizontalAlignment="Left" Margin="160,21,0,0" TextWrapping="Wrap" Text="Escala amplitud:" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtDesplazamientoY" HorizontalAlignment="Left" Height="23" Margin="164,98,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="120" IsEnabled="{Binding ElementName=chbDesplazamiento, Path=IsChecked}"/>
+        <TextBlock HorizontalAlignment="Left" Margin="164,77,0,0" TextWrapping="Wrap" Text="Desplazamiento en Y:" VerticalAlignment="Top"/>
+        <CheckBox x:Name="chbEscala" Content="" HorizontalAlignment="Left" Margin="299,46,0,0" VerticalAlignment="Top" />
+        <CheckBox x:Name="chbDesplazamiento" Content="" HorizontalAlignment="Left" Margin="299,102,0,0" VerticalAlignment="Top" />
+        <CheckBox x:Name="chbTruncar" Content="" HorizontalAlignment="Left" Margin="299,160,0,0" VerticalAlignment="Top" />
+        <TextBox x:Name="txtTruncar" HorizontalAlignment="Left" Height="23" Margin="164,155,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="120" IsEnabled="{Binding IsChecked, ElementName=chbTruncar}"/>
+        <TextBlock HorizontalAlignment="Left" Margin="164,133,0,0" TextWrapping="Wrap" Text="Truncar:" VerticalAlignment="Top"/>
+        <CheckBox x:Name="chbPotencia" Content="" HorizontalAlignment="Left" Margin="299,217,0,0" VerticalAlignment="Top" />
+        <TextBox x:Name="txtPotencia" HorizontalAlignment="Left" Height="23" Margin="164,212,0,0" TextWrapping="Wrap" Text="1" VerticalAlignment="Top" Width="120" IsEnabled="{Binding IsChecked, ElementName=chbPotencia}"/>
+        <TextBlock HorizontalAlignment="Left" Margin="164,190,0,0" TextWrapping="Wrap" Text="Potencia:" VerticalAlignment="Top"/>
+        <StackPanel x:Name="panelConfiguracionSegundaSeñal" HorizontalAlignment="Left" Height="162" Margin="324,76,0,0" VerticalAlignment="Top" Width="139"/>
+        <ComboBox x:Name="cbTipoSeñalSegundaSeñal" SelectedIndex="0" HorizontalAlignment="Left" Margin="325,41,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="cbTipoSeñalSegundaSeñal_SelectionChanged">
+            <ComboBoxItem Content="Señal Senoidal"/>
+            <ComboBoxItem Content="Señal rampa"/>
+            <ComboBoxItem Content="Señal Exponencial"/>
+        </ComboBox>
+        <TextBlock HorizontalAlignment="Left" Margin="329,16,0,0" TextWrapping="Wrap" Text="Tipo de señal:" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtEscalaAmplitudSegundaSeñal" HorizontalAlignment="Left" Height="23" Margin="469,42,0,0" TextWrapping="Wrap" Text="1" VerticalAlignment="Top" Width="120" IsEnabled="{Binding IsChecked, ElementName=chbEscalaSegundaSeñal}"/>
+        <TextBlock HorizontalAlignment="Left" Margin="464,21,0,0" TextWrapping="Wrap" Text="Escala amplitud:" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtDesplazamientoYSegundaSeñal" HorizontalAlignment="Left" Height="23" Margin="468,98,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="120" IsEnabled="{Binding IsChecked, ElementName=chbDesplazamientoSegundaSeñal}"/>
+        <TextBlock HorizontalAlignment="Left" Margin="468,77,0,0" TextWrapping="Wrap" Text="Desplazamiento en Y:" VerticalAlignment="Top"/>
+        <CheckBox x:Name="chbEscalaSegundaSeñal" Content="" HorizontalAlignment="Left" Margin="603,46,0,0" VerticalAlignment="Top" />
+        <CheckBox x:Name="chbDesplazamientoSegundaSeñal" Content="" HorizontalAlignment="Left" Margin="603,102,0,0" VerticalAlignment="Top" />
+        <CheckBox x:Name="chbTruncarSegundaSeñal" Content="" HorizontalAlignment="Left" Margin="603,160,0,0" VerticalAlignment="Top" />
+        <TextBox x:Name="txtTruncarSegundaSeñal" HorizontalAlignment="Left" Height="23" Margin="468,155,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="120" IsEnabled="{Binding IsChecked, ElementName=chbTruncarSegundaSeñal}"/>
+        <TextBlock HorizontalAlignment="Left" Margin="468,133,0,0" TextWrapping="Wrap" Text="Truncar:" VerticalAlignment="Top"/>
+        <CheckBox x:Name="chbPotenciaSegundaSeñal" Content="" HorizontalAlignment="Left" Margin="603,217,0,0" VerticalAlignment="Top" />
+        <TextBox x:Name="txtPotenciaSegundaSeñal" HorizontalAlignment="Left" Height="23" Margin="468,212,0,0" TextWrapping="Wrap" Text="1" VerticalAlignment="Top" Width="120" IsEnabled="{Binding IsChecked, ElementName=chbPotenciaSegundaSeñal}"/>
+        <TextBlock HorizontalAlignment="Left" Margin="468,190,0,0" TextWrapping="Wrap" Text="Potencia:" VerticalAlignment="Top"/>
 
 
 
